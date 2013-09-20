@@ -92,6 +92,8 @@ unittest:
 rpms: build manpage sdist
 	mkdir -p rpm-build
 	cp dist/*.gz rpm-build/
+	#sed -i 's/^\(Release: .*\)\.[0-9]\+/\1.'$(BUILD_NUMBER)'/' spec/raskiidoc.spec
+	sed -i 's/^Release: \([0-9]\+\)/Release: $(BUILD_NUMBER)/' spec/raskiidoc.spec
 	rpmbuild --define "_topdir %(pwd)/rpm-build" \
 	--define "_builddir %{_topdir}" \
 	--define "_rpmdir %{_topdir}" \
@@ -100,7 +102,6 @@ rpms: build manpage sdist
 	--define "_specdir %{_topdir}" \
 	--define "_sourcedir  %{_topdir}" \
 	--define "vendor Think" \
-	--define 'BUILD_NUMBER '$(BUILD_NUMBER) \
 	-ba spec/raskiidoc.spec
 	cp rpm-build/*.rpm dist/
 	rm -rf rpm-build
