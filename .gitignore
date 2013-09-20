@@ -3,3 +3,4 @@ html/
 pdf/
 *-docinfo.xml
 changelog.txt
+dist
