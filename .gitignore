@@ -4,3 +4,4 @@ pdf/
 *-docinfo.xml
 changelog.txt
 dist
+rpm-build

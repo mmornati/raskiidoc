@@ -1,7 +1,7 @@
 Summary: RaskiiDoc Builder
 Name: raskiidoc
 Version: 0.9
-Release: 1%{dist}
+Release: %{?BUILD_NUMBER}
 License: GPLv3
 Group: Applications/System
 URL: https://github.com/llicour/raskiidoc

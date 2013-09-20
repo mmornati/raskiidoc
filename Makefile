@@ -100,6 +100,7 @@ rpms: build manpage sdist
 	--define "_specdir %{_topdir}" \
 	--define "_sourcedir  %{_topdir}" \
 	--define "vendor Think" \
+	--define 'BUILD_NUMBER '$BUILD_NUMBER
 	-ba spec/raskiidoc.spec
 	cp rpm-build/*.rpm dist/
 	rm -rf rpm-build
