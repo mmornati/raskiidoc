@@ -93,7 +93,9 @@ rpms: build manpage sdist
 	mkdir -p rpm-build
 	cp dist/*.gz rpm-build/
 	#sed -i 's/^\(Release: .*\)\.[0-9]\+/\1.'$(BUILD_NUMBER)'/' spec/raskiidoc.spec
-	sed -i 's/^Release: \([0-9]\+\)/Release: $(BUILD_NUMBER)/' spec/raskiidoc.spec
+	@if [ "${BUILD_NUMBER}" != "" ]; then \
+	   sed -i 's/^Release: \([0-9]\+\)/Release: $(BUILD_NUMBER)/' spec/raskiidoc.spec; \
+	fi
 	rpmbuild --define "_topdir %(pwd)/rpm-build" \
 	--define "_builddir %{_topdir}" \
 	--define "_rpmdir %{_topdir}" \
