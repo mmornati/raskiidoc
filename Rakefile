@@ -9,6 +9,7 @@ require 'tempfile'
 $DEBUG=1
 
 $options = { "pdf"    => {:path => "pdf",    :ext => "pdf",  :prog => "a2x"},
+             "epub"    => {:path => "epub",  :ext => "epub",  :prog => "a2x"},
              "html"   => {:path => "html",   :ext => "html", :prog => "asciidoc" },
              "slidy2" => {:path => "slides", :ext => "html", :prog => "asciidoc" },
              "slidy"  => {:path => "slides", :ext => "html", :prog => "asciidoc" },
@@ -51,7 +52,7 @@ task :help do
   puts "  DEBUG=3         : debug+ mode"
   puts "  DEBUG=4         : debug++ mode"
   puts "  FILE=<filename> : filename only"
-  puts "  target          : pdf, html, slidy, slidy2, deckjs"
+  puts "  target          : pdf, epub, html, slidy, slidy2, deckjs"
   puts
 end
 
@@ -133,6 +134,10 @@ end
 
 task :pdf do
     $filter = :pdf
+    Rake::Task[:default].execute()
+end
+task :epub do
+    $filter = :epub
     Rake::Task[:default].execute()
 end
 task :html do
@@ -418,7 +423,7 @@ class ConvertDoc
   def initialize(doc, convert)
     @doc = doc
 
-    m = /^:convert: (?<type>pdf|html|slidy|slidy2|deckjs)(?<convopts>,.*)*$/.match(convert)
+    m = /^:convert: (?<type>pdf|epub|html|slidy|slidy2|deckjs)(?<convopts>,.*)*$/.match(convert)
     if not m.nil?
       @Type = m[:type]
       convopts = m[:convopts]
@@ -506,7 +511,7 @@ class ConvertDoc
   def convert
     case $options[@Type][:prog]
     when "a2x"
-      self.ConvertA2X()
+      self.ConvertA2X(@Type)
     when "asciidoc"
       self.ConvertASCIIDOC()
     else
@@ -518,7 +523,7 @@ class ConvertDoc
   ################################################################################
   # Convert using a2x tool
   ################################################################################
-  def ConvertA2X
+  def ConvertA2X(typeOutput)
     # a2x options
     if not @FullOpts.nil?
       opts = @FullOpts + " "
@@ -529,6 +534,8 @@ class ConvertDoc
     opts += @Opts + " " if not @Opts.nil?
 
     opts += "-v " if $debug2
+
+    opts += "-f #{typeOutput}" if typeOutput
   
     # Execute pre actions
     self.ExecuteAction(:pre)

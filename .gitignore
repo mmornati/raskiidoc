@@ -1,6 +1,8 @@
 .rake/a2x.conf
 html/
 pdf/
+epub/
+slides/
 *-docinfo.xml
 changelog.txt
 dist
