@@ -60,7 +60,7 @@ desc "Default task : build html and index"
 ################################################################################
 task :default do
     $basedir = __FILE__.gsub("/Rakefile", "")
-    $confdir = __FILE__.gsub("Rakefile", "") + ".rake"
+    $confdir = __FILE__.gsub("Rakefile", "")
     $confdir = nil if ! File.directory?($confdir)
     $verbose = (ENV["DEBUG"].nil?)?false:true
     $debug   = (ENV["DEBUG"].nil?)?false:(ENV["DEBUG"].to_i > 1)?true:false
@@ -820,7 +820,7 @@ def ReadGlobalConfig()
   conf[:globalConfFile] = "#{$confdir}/#{$globalConfFile}"
   conf[:globalConfDir] = "#{$confdir}/#{$globalConfDir}"
 
-  altConfFile = "#{$curdir}/.rake/#{$globalConfFile}"
+  altConfFile = "#{$curdir}/#{$globalConfFile}"
   if File.exists?(altConfFile)
     begin
       puts "Reading local config file #{altConfFile}" if $verbose

@@ -42,7 +42,7 @@ other developers.
 To do this, enter into backend folder and execute a make command:
 
 ```bash
-cd .rake/backends/asciidoc-deckjs/
+cd raskiidoc/backends/asciidoc-deckjs/
 make install-dep
 ```
 
@@ -52,7 +52,7 @@ files.
 
 General configuration file
 --------------------------
-.rake/asciidoc.yaml
+raskiidoc/asciidoc.yaml
 
 Document specific configuration file
 ------------------------------------
