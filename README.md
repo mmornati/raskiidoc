@@ -81,6 +81,14 @@ asciidoc --backend install deckjs.zip
 rm -f deckjs.zip
 ```
 
+Dependencies
+-----
+If you want to install Raskiidoc on CentOS 6, you should have a recent version
+of asciidoc (not the one in the EPEL repository).
+
+http://pkgs.repoforge.org/asciidoc/asciidoc-8.6.7-1.el6.rfx.noarch.rpm
+
+
 Usage
 -----
 

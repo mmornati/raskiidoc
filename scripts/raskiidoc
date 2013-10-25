@@ -1,5 +1,6 @@
 #!/bin/bash
-RAKE_BIN=/usr/local/bin/rake
+#RAKE_BIN=/usr/local/bin/rake
+RAKE_BIN=`which rake`
 
 source /etc/raskiidoc/raskiidoc.conf
 
