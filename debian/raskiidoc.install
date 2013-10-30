@@ -1,0 +1,4 @@
+Rakefile /usr/share/raskiidoc
+raskiidoc/* /usr/share/raskiidoc
+scripts/raskiidoc /usr/bin/
+conf/* /etc/raskiidoc/

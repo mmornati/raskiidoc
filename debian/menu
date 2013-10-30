@@ -1,0 +1,2 @@
+?package(raskiidoc):needs="text" section="Applications/Text"\
+  title="raskiidoc" command="/usr/bin/raskiidoc"

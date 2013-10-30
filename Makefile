@@ -107,3 +107,7 @@ rpms: build manpage sdist
 	-ba spec/raskiidoc.spec
 	cp rpm-build/*.rpm dist/
 	rm -rf rpm-build
+debs:
+	debuild -us -uc
+clean_debs:
+	debuild clean
