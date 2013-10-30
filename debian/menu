@@ -1,2 +1,2 @@
-?package(raskiidoc):needs="X11|text|vc|wm" section="Applications/see-menu-manual"\
+?package(raskiidoc):needs="text" section="Applications/Text"\
   title="raskiidoc" command="/usr/bin/raskiidoc"

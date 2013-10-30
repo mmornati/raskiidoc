@@ -8,8 +8,8 @@ Homepage: https://github.com/llicour/raskiidoc
 
 Package: raskiidoc
 Architecture: any
-Depends: , , ruby, rake, rubygems, python-support (>= 0.90)
+Depends: ruby, rake, rubygems, python-support (>= 0.90)
 Suggests: asciidoc
 Description: Rakefile to simplify generation of asciidoc documents
- Rakefile to simplify generation of asciidoc documents. Asciidoc generation can use complex arguments hard to remember,
- and could be document specific.
+ Rakefile to simplify generation of asciidoc documents.Asciidoc generation
+ can use complex arguments hard to remember, and could be document specific.
