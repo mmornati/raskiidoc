@@ -11,7 +11,7 @@ Source: %{name}-%{version}.tar.gz
 %{summary}.
 
 Summary: RaskiiDoc Builder
-Requires: rubygem-rake, python-argparse, asciidoc >= 8.6.0, source-highlight
+Requires: rubygem-rake, python-argparse, asciidoc >= 8.6.0, source-highlight, texlive-upquote
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 BuildArch: noarch
 
