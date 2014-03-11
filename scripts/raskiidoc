@@ -24,7 +24,7 @@ while getopts "f:odt:h" opt; do
      case $opt in
          f) FILENAME=$OPTARG;;
          o) FORCE=1;;
-         d) DEBUG=1;;
+         d) DEBUG=3;;
          t) TYPE=$OPTARG;;
          *) 
             echo "Usage: `basename $0` [options]";
