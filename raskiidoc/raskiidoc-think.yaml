@@ -1,0 +1,288 @@
+---
+# asciidoc -> pdf  : a2x -> asciidoc -> xsltproc -> dblatex
+# asciidoc -> html : asciidoc -> html
+
+
+#############################################
+# defaults options for asciidoc documents (html)
+#############################################
+asciidoc::html::options:
+  # verbose mode
+  #- "-v"
+  # Auto-number sections
+  - "-n"
+  # backend
+  - "--backend=%b/backends/fikibootstrap/fikibootstrap"
+  # theme
+  #- "--theme=pryz"
+
+#############################################
+# defaults config files for asciidoc documents (html)
+#############################################
+asciidoc::html::config:
+
+#############################################
+# defaults attributes for asciidoc documents (html)
+#############################################
+asciidoc::html::attributes:
+  # Table of Content
+  - toc
+  # Embbed ressources (images, css...)
+  - data-uri
+  # icons
+  - icons
+  - iconsdir=%b/icons
+
+#############################################
+# defaults options for asciidoc documents (slidy)
+#############################################
+asciidoc::slidy::options:
+  - "-b slidy"
+  # verbose mode
+  #- "-v"
+  # Auto-number sections
+  - "-n"
+
+#############################################
+# defaults config files for asciidoc documents (slidy)
+#############################################
+asciidoc::slidy::config:
+
+#############################################
+# defaults attributes for asciidoc documents (slidy)
+#############################################
+asciidoc::slidy::attributes:
+  # Embbed ressources (images, css...)
+  - data-uri
+  # icons
+  - icons
+  - iconsdir=%b/icons
+
+#############################################
+# defaults options for asciidoc documents (slidy2)
+#############################################
+asciidoc::slidy2::options:
+  #- "-b slidy2"
+  - "--backend=%b/backends/slidy2/slidy2"
+  # verbose mode
+  #- "-v"
+  # Auto-number sections
+  - "-n"
+
+#############################################
+# defaults config files for asciidoc documents (slidy2)
+#############################################
+asciidoc::slidy2::config:
+
+#############################################
+# defaults attributes for asciidoc documents (slidy2)
+#############################################
+asciidoc::slidy2::attributes:
+  # Embbed ressources (images, css...)
+  - data-uri
+  # icons
+  - icons
+  - iconsdir=%b/icons
+
+#############################################
+# defaults options for asciidoc documents (deckjs)
+#############################################
+asciidoc::deckjs::options:
+  #- "-b deckjs"
+  - "--backend=%b/backends/asciidoc-deckjs/deckjs"
+  # verbose mode
+  #- "-v"
+  # Auto-number sections
+  - "-n"
+
+#############################################
+# defaults config files for asciidoc documents (deckjs)
+#############################################
+asciidoc::deckjs::config:
+
+#############################################
+# defaults attributes for asciidoc documents (deckjs)
+#############################################
+asciidoc::deckjs::attributes:
+  # Embbed ressources (images, css...)
+  - data-uri
+  # icons
+  - icons
+  - iconsdir=%b/icons
+
+#############################################
+# defaults options for asciidoc documents (pdf)
+#############################################
+asciidoc::pdf::options:
+  # verbose mode
+  #- "-v"
+
+#############################################
+# defaults config files for asciidoc documents (pdf)
+#############################################
+asciidoc::pdf::config:
+  # page break before section 1
+  - section1-pagebreak.conf
+
+#############################################
+# defaults attributes for asciidoc documents (pdf)
+#############################################
+asciidoc::pdf::attributes:
+  # prise en compte fichier *-docinfo.xml
+  - docinfo
+  # prise en compte fichier *-revhistory.xml
+  - revisionhistory
+  # Accents possibles dans les titres
+  - ascii-ids
+
+#############################################
+# defaults options for asciidoc documents (epub)
+#############################################
+asciidoc::epub::options:
+  # verbose mode
+  #- "-v"
+
+#############################################
+# defaults config files for asciidoc documents (epub)
+#############################################
+asciidoc::epub::config:
+  # page break before section 1
+  - section1-pagebreak.conf
+
+#############################################
+# defaults attributes for asciidoc documents (epub)
+#############################################
+asciidoc::epub::attributes:
+  # prise en compte fichier *-docinfo.xml
+  - docinfo
+  # prise en compte fichier *-revhistory.xml
+  - revisionhistory
+  # Accents possibles dans les titres
+  - ascii-ids
+
+#############################################
+# defaults options for a2x
+#############################################
+a2x::options:
+  # keep temporary xml file
+  #- "-k"
+
+#############################################
+# defaults options for dblatex backend
+#############################################
+dblatex::options:
+  # verbose mode
+  #- "-V"
+  # where to find images
+  - "-I %D"
+
+#############################################
+# defaults parameters for dblatex backend
+#############################################
+dblatex::params:
+  # table des matieres
+  - doc.toc.show=1
+  # pas de liens visibles
+  - latex.hyperparam="hidelinks=true,pdfstartview=FitH"
+  # pas de logo dblatex
+  - doc.publisher.show=0
+
+#############################################
+# defaults xsl for dblatex backend
+#############################################
+dblatex::xsl:
+  # roles fonts
+  - roles-fonts.xsl
+
+#############################################
+# defaults sty for dblatex backend
+#############################################
+dblatex::sty:
+  # header/footer
+  #- custom-frontpage-and-footer.sty
+  # Some custom parameters
+  - think.sty
+
+
+
+####################################################
+# Processing options
+#  %f : full input filename (/path1/path2/file.txt)
+#  %F : input base filename (file.txt)
+#  %D : input dirname (/path1/path2)
+#  %E : input extension (.txt)
+#  %r : input filename without extension (file)
+#  %t : type of conversion (pdf, html, slidy...)
+#  %o : full output filename (/path1/path2/pdf/file.pdf)
+#  %O : output dirname (/path1/path2/pdf)
+#  %B : basedir of project (Rakefile place)
+#  %b : confdir of project (.rake place)
+####################################################
+
+#############################################
+# Preprocessing tools before pdf generation
+#############################################
+tools::pdf::pre:
+  # Generate docbook metadata file : *-docinfo.xml
+  - python %b/tools/asciidoc-tools/docinfo_generator.py -o %D/%r-docinfo.xml %f
+
+#############################################
+# Postprocessing tools after pdf generation
+#############################################
+tools::pdf::post:
+  # remove docinfo files
+  - rm -f %D/%r-docinfo.xml
+
+#############################################
+# Preprocessing tools before html generation
+#############################################
+tools::html::pre:
+  # Sample code to copy ressources files (would be not necessary with data-uri attribute)
+  #- "[ -d '%D/images' ]  && rsync -a '%D/images'  '%O/'"
+  #- "[ -d '%D/Images' ]  && rsync -a '%D/Images'  '%O/'"
+  #- "[ -d '%D/schemas' ] && rsync -a '%D/schemas' '%O/'"
+  #- "[ -d '%D/Schemas' ] && rsync -a '%D/Schemas' '%O/'"
+
+#############################################
+# Postprocessing tools after html generation
+#############################################
+tools::html::post:
+  # Remove footer
+  - sed -i '/^Last updated/d' %o
+
+#############################################
+# Preprocessing tools before slidy generation
+#############################################
+tools::slidy::pre:
+
+#############################################
+# Postprocessing tools after slidy generation
+#############################################
+tools::slidy::post:
+  # Remove footer
+  - sed -i '/^Last updated/d' %o
+
+#############################################
+# Preprocessing tools before slidy2 generation
+#############################################
+tools::slidy2::pre:
+
+#############################################
+# Postprocessing tools after slidy2 generation
+#############################################
+tools::slidy2::post:
+  # Remove footer
+  - sed -i '/^Last updated/d' %o
+
+#############################################
+# Preprocessing tools before deckjs generation
+#############################################
+tools::deckjs::pre:
+
+#############################################
+# Postprocessing tools after deckjs generation
+#############################################
+tools::deckjs::post:
+  # Remove footer
+  - sed -i '/^Last updated/d' %o
+
