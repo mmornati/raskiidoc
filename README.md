@@ -111,7 +111,7 @@ Change documents Author with your information (all documents built from your
 comper will report your name):
 
 ```bash
-sed -i s/Unknown/Marco Mornati/g /usr/share/raskiidoc/raskiidoc.d/think-vars.yaml
+sed -i s/Unknown/Marco\ Mornati/g /usr/share/raskiidoc/raskiidoc.d/think-vars.yaml
 ```
 
 If you want you can also change the GPG information to crypt/decrypt documents.
