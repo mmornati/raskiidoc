@@ -5,12 +5,12 @@ vars::CoverPage::Logo1Size: "0.35"
 vars::CoverPage::TitleLevel1: '\DBKtitle'
 vars::CoverPage::TitleLevel2: "Title level 2"
 vars::CoverPage::TitleLevel3: "Title level 3"
-vars::CoverPage::LabelBottomRight: "Company:"
-vars::CoverPage::LabelBottomLeft: "Author:"
-vars::CoverPage::TextBottomRight: "Think"
+vars::CoverPage::LabelBottomRight: "Th!nk"
+vars::CoverPage::LabelBottomLeft: "Unknown"
+vars::CoverPage::TextBottomRight: "Th!nk"
 vars::CoverPage::TextBottomCenter: '\today'
-vars::CoverPage::TextBottomLeft: '\DBKauthor'
-vars::Pages::FooterLeft: "left footer"
+vars::CoverPage::TextBottomLeft: 'Unknown'
+vars::Pages::FooterLeft: "Unknown"
 vars::Pages::FooterCenter: '\thepage{} / \getpagerefnumber{LastPage}'
-vars::Pages::FooterRight: "right footer"
+vars::Pages::FooterRight: "Th!nk"
 

@@ -74,7 +74,7 @@ sudo wget -O /etc/asciidoc/javascripts/slidy2.js https://asciidoc-slidy2-backend
 ```
 
 Install deckjs asciidoc backend
------------------------------------------------------------------------------
+-------------------------------
 ```bash
 wget -O deckjs.zip https://github.com/downloads/houqp/asciidoc-deckjs/deckjs-1.6.2.zip
 asciidoc --backend install deckjs.zip
@@ -82,12 +82,40 @@ rm -f deckjs.zip
 ```
 
 Dependencies
------
+------------
 If you want to install Raskiidoc on CentOS 6, you should have a recent version
 of asciidoc (not the one in the EPEL repository).
 
 http://pkgs.repoforge.org/asciidoc/asciidoc-8.6.7-1.el6.rfx.noarch.rpm
 
+
+Install Templates
+-----------------
+
+Included in the raskiidoc there are some templates you can use to generate
+html/pdf document, starting from your asciidoc source.
+
+If you want to activate the Think template, for example, you have to:
+
+```bash
+yum -y install raskiidoc-template-think
+```
+
+Edit the raskiidoc configuration file, changing the line with custom.sty with the think template information:
+
+```bash
+sed -i s/custom.sty/think.sty/g /usr/share/raskiidoc/raskiidoc.yaml
+```
+
+Change documents Author with your information (all documents built from your
+comper will report your name):
+
+```bash
+sed -i s/Unknown/Marco Mornati/g /usr/share/raskiidoc/raskiidoc.d/think-vars.yaml
+```
+
+If you want you can also change the GPG information to crypt/decrypt documents.
+These information are stored in /usr/share/raskiidoc/raskiidoc.d/think-gpg.yaml
 
 Usage
 -----

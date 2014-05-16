@@ -1,6 +1,6 @@
 Summary: RaskiiDoc Builder
 Name: raskiidoc
-Version: 1.0
+Version: 1.2
 Release: 1
 License: GPLv3
 Group: Applications/System
